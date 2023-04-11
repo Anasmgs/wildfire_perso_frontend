@@ -2,7 +2,6 @@ import streamlit as st
 import folium
 from PIL import Image, ExifTags
 from streamlit_folium import st_folium
-import requests
 
 st.set_page_config(layout='wide', page_title='Project Wildfire')
 st.title('Project Wildfire :fire:')
@@ -34,19 +33,13 @@ def degrees_to_decimals(degrees_coord):
         dtd*= -1
     return dtd
 
-# run trained model on uploaded image through POST request to API
-if st.button("Detect"):
-    if my_upload is not None:
-        res = requests.post(url="https://wildfire-project-backend.herokuapp.com/image-detector", data=Image.open(upload))
-    
-
 # display original uploaded image and GPS coordinates
 def display_img_gps_location(upload):
     image = Image.open(upload)
 
     with col1:
         st.header('Original image')
-        st.image(res)
+        st.image(upload)
     
     with col2:
         st.header('Fire location')
