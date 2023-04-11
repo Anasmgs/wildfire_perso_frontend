@@ -3,6 +3,7 @@ import folium
 from PIL import Image, ExifTags
 from streamlit_folium import st_folium
 import requests
+import io
 
 st.set_page_config(layout='wide', page_title='Project Wildfire')
 st.title('Project Wildfire :fire:')
@@ -37,7 +38,9 @@ def degrees_to_decimals(degrees_coord):
 # run trained model on uploaded image through POST request to API
 if st.button("Detect"):
     if my_upload is not None:
-        res = requests.post(url="https://wildfire-project-backend.herokuapp.com/image-detector", data=Image.open(my_upload))
+        files = {"file": my_upload}
+        res = requests.post(url="https://wildfire-project-backend.herokuapp.com/image-detector", files=files)
+        print(res.json())
     
 
 # display original uploaded image and GPS coordinates
@@ -55,3 +58,22 @@ def display_img_gps_location(upload):
 if my_upload is not None:
     display_img_gps_location(my_upload)
 
+
+# import requests
+# import streamlit as st
+
+# # Get the uploaded image file from Streamlit
+# uploaded_file = st.file_uploader("Choose an image file")
+
+# # Check if the file was uploaded
+# if uploaded_file is not None:
+
+#     # Set up the requests parameters
+#     url = "https://example.com/upload"
+#     files = {"file": uploaded_file}
+
+#     # Send the post request with the image file
+#     response = requests.post(url, files=files)
+
+#     # Check the response status
+#     print(response.status_code)
