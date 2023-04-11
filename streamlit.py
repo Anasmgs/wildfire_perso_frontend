@@ -55,21 +55,3 @@ if st.button("Detect"):
         display_img_gps_location(res)    
 
 
-# import requests
-# import streamlit as st
-
-# # Get the uploaded image file from Streamlit
-# uploaded_file = st.file_uploader("Choose an image file")
-
-# # Check if the file was uploaded
-# if uploaded_file is not None:
-
-#     # Set up the requests parameters
-#     url = "https://example.com/upload"
-#     files = {"file": uploaded_file}
-
-#     # Send the post request with the image file
-#     response = requests.post(url, files=files)
-
-#     # Check the response status
-#     print(response.status_code)
