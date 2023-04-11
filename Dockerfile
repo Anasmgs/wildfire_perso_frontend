@@ -13,4 +13,4 @@ RUN pip install -r /dependencies/requirements.txt
 
 COPY . /home/app
 
-CMD streamlit_vAM run --server.port $PORT streamlit_vAM.py
+CMD streamlit run --server.port $PORT streamlit.py
