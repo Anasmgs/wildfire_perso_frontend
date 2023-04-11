@@ -49,14 +49,14 @@ def display_img_gps_location(upload):
 
     with col1:
         st.header('Detected image')
-        st.image(res)
+        st.image(image)
     
     with col2:
         st.header('Fire location')
         display_image_location(image)
     
 if my_upload is not None:
-    display_img_gps_location(my_upload)
+    display_img_gps_location(res)
 
 
 # import requests
