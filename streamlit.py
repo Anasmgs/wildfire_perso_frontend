@@ -38,11 +38,10 @@ def degrees_to_decimals(degrees_coord):
 
 # display original uploaded image and GPS coordinates
 def display_img_gps_location(upload):
-    image = Image.open(upload)
 
     with col1:
         st.header('Detected image')
-        st.image(image)
+        st.image(upload)
     
     with col2:
         st.header('Fire location')
