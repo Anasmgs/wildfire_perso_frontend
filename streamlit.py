@@ -35,13 +35,6 @@ def degrees_to_decimals(degrees_coord):
         dtd*= -1
     return dtd
 
-# run trained model on uploaded image through POST request to API
-if st.button("Detect"):
-    if my_upload is not None:
-        files = {"file": my_upload}
-        res = requests.post(url="https://wildfire-project-backend.herokuapp.com/image-detector", files=files)
-        print(res.json())
-    
 
 # display original uploaded image and GPS coordinates
 def display_img_gps_location(upload):
@@ -55,8 +48,13 @@ def display_img_gps_location(upload):
         st.header('Fire location')
         display_image_location(image)
     
-if my_upload is not None:
-    display_img_gps_location(res)
+# run trained model on uploaded image through POST request to API
+if st.button("Detect"):
+    if my_upload is not None:
+        files = {"file": my_upload}
+        res = requests.post(url="https://wildfire-project-backend.herokuapp.com/image-detector", files=files)
+        print(res.json())
+        display_img_gps_location(res)    
 
 
 # import requests
