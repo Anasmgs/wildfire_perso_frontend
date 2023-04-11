@@ -46,14 +46,13 @@ def display_img_gps_location(upload):
     
     with col2:
         st.header('Fire location')
-        display_image_location(image)
+        display_image_location(Image.open(my_upload))
     
 # run trained model on uploaded image through POST request to API
 if st.button("Detect"):
     if my_upload is not None:
         files = {"file": my_upload}
         res = requests.post(url="https://wildfire-project-backend.herokuapp.com/image-detector", files=files)
-        print(res.json())
         display_img_gps_location(res)    
 
 
