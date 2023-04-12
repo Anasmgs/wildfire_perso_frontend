@@ -4,6 +4,7 @@ from PIL import Image, ExifTags
 from streamlit_folium import st_folium
 import requests
 import io
+import cv2
 
 st.set_page_config(layout='wide', page_title='Project Wildfire')
 st.title('Project Wildfire :fire:')
@@ -37,11 +38,11 @@ def degrees_to_decimals(degrees_coord):
 
 
 # display original uploaded image and GPS coordinates
-def display_img_gps_location(upload):
+def display_img_gps_location(api_upload):
 
     with col1:
         st.header('Detected image')
-        st.image(upload)
+        st.image(api_upload)
     
     with col2:
         st.header('Fire location')
@@ -52,6 +53,8 @@ if st.button("Detect"):
     if my_upload is not None:
         files = {"file": my_upload}
         res = requests.post(url="https://wildfire-project-backend.herokuapp.com/image-detector", files=files)
-        display_img_gps_location(res)    
+        arr = np.asarray(json.loads(res.json())) #convert json from api back to np array of detected image
+        r_plotted = arr.astype("uint8") # convert np array of detected image to format readable by cv2 (normalization likely non necessary as already done at api,model level)
+        display_img_gps_location(r_plotted)  #we feed a numpy array to st.image in function 
 
 
