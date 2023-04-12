@@ -4,7 +4,9 @@ from PIL import Image, ExifTags
 from streamlit_folium import st_folium
 import requests
 import io
-import cv2
+from cv2 import cv2
+import numpy as np
+import json
 
 st.set_page_config(layout='wide', page_title='Project Wildfire')
 st.title('Project Wildfire :fire:')
