@@ -4,7 +4,7 @@ from PIL import Image, ExifTags
 from streamlit_folium import st_folium
 import requests
 import io
-from cv2 import cv2
+import cv2
 import numpy as np
 import json
 
